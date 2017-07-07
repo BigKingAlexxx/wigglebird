@@ -27,7 +27,6 @@ public class GameOverState extends State {
     private Preferences prefs = Gdx.app.getPreferences("FlappyPrefs");
     private float averageScore;
     private int bestScore;
-    private float score = PlayState.getScoreFloat();
     private SimpleButton simplePlay, simpleHome, simpleRate;
     private Sound transition;
 
@@ -80,12 +79,15 @@ public class GameOverState extends State {
         fontRate = new BitmapFont(Gdx.files.internal("font/text.fnt"), true);
         fontRate.getData().setScale(.25f, -.25f);
 
+
+        float score = PlayState.getScoreFloat();
         bestScore = Math.max(prefs.getInteger("bestScore"), Integer.parseInt(PlayState.getScore()));
         prefs.putInteger("bestScore", bestScore);
-        averageScore = (prefs.getFloat("averageScore") + score)
-                / (prefs.getFloat("totalRuns") + 1f);
-        prefs.putFloat("averageScore", averageScore);
         prefs.putFloat("totalRuns", (prefs.getFloat("totalRuns") + 1f));
+        prefs.flush();
+        averageScore = (prefs.getFloat("averageScore") + score)
+                / (prefs.getFloat("totalRuns"));
+        prefs.putFloat("averageScore", averageScore);
         prefs.flush();
     }
 

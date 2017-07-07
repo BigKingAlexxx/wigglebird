@@ -7,7 +7,7 @@
     <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="25" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/ic_launcher"
         android:label="Wiggle Bird"
         android:theme="@style/GdxTheme" >

@@ -24,7 +24,6 @@ public class PlayState extends State {
     private static final int TUBE_COUNT = 4;
     private static final int GROUND_Y_OFFSET = -50;
 
-    private Music music;
     private Bird bird;
     private Texture bg, bgNight;
     private Array<Tube> tubes;
@@ -33,7 +32,7 @@ public class PlayState extends State {
     private long start = System.currentTimeMillis() + 2000;
     private Array<Ground> grounds;
     private static int score;
-    private static float scoreFloat = 0;
+    private static float scoreFloat;
     private BitmapFont font, shadow;
     private GlyphLayout glyphFont, glyphShadow;
     private Sound hit, coin;
@@ -53,6 +52,7 @@ public class PlayState extends State {
         grounds.add(new Ground(cam.position.x - (cam.viewportWidth / 2)));
         grounds.add(new Ground(grounds.get(0).getTexture().getWidth()));
         score = 0;
+        scoreFloat = 0f;
         font = new BitmapFont(Gdx.files.internal("font/text.fnt"), true);
         font.getData().setScale(.35f, -.35f);
         shadow = new BitmapFont(Gdx.files.internal("font/shadow.fnt"), true);
@@ -106,7 +106,7 @@ public class PlayState extends State {
                     tube.test = true;
                     coin.play(0.5f);
                     score += 1;
-                    scoreFloat += 1;
+                    scoreFloat += 1f;
                 }
             }
 

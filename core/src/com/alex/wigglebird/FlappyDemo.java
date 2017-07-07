@@ -4,6 +4,7 @@ import com.alex.wigglebird.states.GameStateManager;
 import com.alex.wigglebird.states.MenuState;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -30,8 +31,21 @@ public class FlappyDemo extends ApplicationAdapter {
         toggle = !toggle;
     }
 
+    private void updatePreferences() {
+        Preferences prefs = Gdx.app.getPreferences("FlappyPrefs");
+        if(prefs.getBoolean("update_required", true)) {
+            prefs.clear();
+
+        /*....make the updates....*/
+
+            prefs.putBoolean("update_required", false);
+            prefs.flush();
+        }
+    }
+
     @Override
     public void create() {
+        updatePreferences();
         batch = new SpriteBatch();
         gsm = new GameStateManager();
         Gdx.gl.glClearColor(1, 0, 0, 1);
