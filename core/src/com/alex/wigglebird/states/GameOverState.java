@@ -85,7 +85,7 @@ public class GameOverState extends State {
         prefs.putInteger("bestScore", bestScore);
         prefs.putFloat("totalRuns", (prefs.getFloat("totalRuns") + 1f));
         prefs.flush();
-        averageScore = (prefs.getFloat("averageScore") + score)
+        averageScore = (prefs.getFloat("averageScore") * (prefs.getFloat("totalRuns") - 1f) + score)
                 / (prefs.getFloat("totalRuns"));
         prefs.putFloat("averageScore", averageScore);
         prefs.flush();

@@ -33,12 +33,12 @@ public class FlappyDemo extends ApplicationAdapter {
 
     private void updatePreferences() {
         Preferences prefs = Gdx.app.getPreferences("FlappyPrefs");
-        if(prefs.getBoolean("update_required", true)) {
+        if(prefs.getBoolean("1.2?", true)) {
             prefs.clear();
 
         /*....make the updates....*/
 
-            prefs.putBoolean("update_required", false);
+            prefs.putBoolean("1.2?", false);
             prefs.flush();
         }
     }
